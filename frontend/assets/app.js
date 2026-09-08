@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://housescope-api.onrender.com";
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navigation = document.getElementById("menu-navigation");
