@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HouseScope | How It Works</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">+</span> HOUSESCOPE</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="menu-navigation"><span></span><span></span><span></span></button>
+    <nav id="main-navigation" aria-label="Main navigation"><a href="index.html">Predict</a><a href="segmentation.html">Segments</a><a class="active" href="about.html">Guide</a><a href="contact.html">Contact</a></nav>
+    <nav id="menu-navigation" class="menu-navigation" aria-label="Menu navigation"><a href="index.html">Predict</a><a href="segmentation.html">Segments</a><a class="active" href="about.html">Guide</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <main class="content-page">
+    <p class="eyebrow">MODEL GUIDE</p>
+    <h1>How a property<br><em>becomes an estimate.</em></h1>
+    <p class="about-lead">HouseScope turns consistent property information into a fast, evidence-based price estimate. This page shows what happens behind the result and why each step matters.</p>
+    <div class="method-steps">
+      <article>
+        <span class="step-number">01</span>
+        <h2>Clean the data</h2>
+        <p>Missing values, unusual domain records, and extreme measurements are handled using the same rules applied during training. Winsorization limits the influence of extreme values without discarding the whole property.</p>
+        <strong>Benefit</strong>
+        <small>More stable predictions from imperfect real-world data.</small>
+      </article>
+      <article>
+        <span class="step-number">02</span>
+        <h2>Build useful features</h2>
+        <p>The pipeline combines original fields into housing signals such as total floor space, living area, total bathrooms, house age, and other domain-driven measurements.</p>
+        <strong>Benefit</strong>
+        <small>The model sees the property as a complete home, not isolated columns.</small>
+      </article>
+      <article>
+        <span class="step-number">03</span>
+        <h2>Translate categories</h2>
+        <p>Ordered quality fields keep their meaningful ranking through ordinal encoding. Other categories are converted with one-hot encoding, then numeric features are scaled consistently.</p>
+        <strong>Benefit</strong>
+        <small>Words such as quality and condition become signals the model can compare fairly.</small>
+      </article>
+      <article>
+        <span class="step-number">04</span>
+        <h2>Generate the estimate</h2>
+        <p>The fitted preprocessing pipeline sends the transformed record to a stacked regression model combining Gradient Boosting, Random Forest, SVR, and Lasso, with Ridge as the final estimator. The predicted log-price is converted back to dollars.</p>
+        <strong>Benefit</strong>
+        <small>Several learning patterns are combined into one consistent estimate.</small>
+      </article>
+    </div>
+    <section class="about-value">
+      <p class="eyebrow">WHY IT MATTERS</p>
+      <h2>From a form or dataset to a decision-ready view</h2>
+      <p>For one property, the result gives an estimated price and an uncertainty range. For a valid CSV, every row is processed with the same saved model so a company can review many properties without retraining the system. Market Segmentation adds a second view by grouping properties into lower, mid-market, and premium patterns.</p>
+      <p class="about-note"><strong>Important:</strong> The model learns from historical Ames Housing patterns. It supports comparison, research, and early valuation decisions; it is not a certified professional appraisal.</p>
+    </section>
+  </main>
+  <footer><span>HOUSESCOPE / AMES HOUSING MODEL</span><span>Created by Yalda Ashrafi &copy; 2026</span></footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>

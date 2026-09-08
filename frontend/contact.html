@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HouseScope | Contact</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">+</span> HOUSESCOPE</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="menu-navigation"><span></span><span></span><span></span></button>
+    <nav id="main-navigation" aria-label="Main navigation"><a href="index.html">Predict</a><a href="segmentation.html">Segments</a><a href="about.html">Guide</a><a class="active" href="contact.html">Contact</a></nav>
+    <nav id="menu-navigation" class="menu-navigation" aria-label="Menu navigation"><a href="index.html">Predict</a><a href="segmentation.html">Segments</a><a href="about.html">Guide</a><a class="active" href="contact.html">Contact</a></nav>
+  </header>
+  <main class="content-page contact-page">
+    <p class="eyebrow">CONTACT / 03</p>
+    <h1>Questions about<br><em>the project?</em></h1>
+    <p>HouseScope is my machine-learning research and portfolio project focused on house-price prediction and housing-market segmentation.</p>
+    <p class="contact-line">For questions, feedback, or collaboration, send a message using the form below.</p>
+    <form id="contactForm" class="contact-form" action="https://formspree.io/f/xyeynobj" method="POST">
+      <label for="contactName">Your name<input id="contactName" name="name" type="text" autocomplete="name" required></label>
+      <label for="contactEmail">Email address<input id="contactEmail" name="email" type="email" autocomplete="email" required></label>
+      <label for="contactMessage">Message<textarea id="contactMessage" name="message" rows="6" required></textarea></label>
+      <input type="hidden" name="_subject" value="New HouseScope project enquiry">
+      <button class="primary-button" type="submit">Send message -&gt;</button>
+      <p id="contactStatus" class="message" role="status"></p>
+    </form>
+  </main>
+  <footer><span>HOUSESCOPE / AMES HOUSING MODEL</span><span>Created by Yalda Ashrafi &copy; 2026</span></footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>

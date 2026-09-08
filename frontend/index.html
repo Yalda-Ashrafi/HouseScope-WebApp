@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HouseScope | Housing Intelligence</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">+</span> HOUSESCOPE</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="menu-navigation"><span></span><span></span><span></span></button>
+    <nav id="main-navigation" aria-label="Main navigation">
+      <a class="active" href="index.html">Predict</a>
+      <a href="segmentation.html">Segments</a>
+      <a href="about.html">Guide</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <nav id="menu-navigation" class="menu-navigation" aria-label="Menu navigation">
+      <a class="active" href="index.html">Predict</a><a href="segmentation.html">Segments</a><a href="about.html">Guide</a><a href="contact.html">Contact</a>
+    </nav>
+    <span class="header-status"><span class="status-dot"></span> MODEL ONLINE</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">HOUSING INTELLIGENCE / 01</p>
+        <h1>Understand value.<br><em>Make informed moves.</em></h1>
+        <p class="hero-copy">A machine-learning valuation tool trained on the Ames housing market. Explore an estimated price from the features that matter most.</p>
+      </div>
+      <div class="hero-side">
+        <div class="hero-visual" aria-label="Illustration of a house">
+          <span class="hero-visual-label">PROPERTY SIGNAL / 01</span>
+          <svg viewBox="0 0 260 150" role="img" aria-hidden="true">
+            <path class="house-shadow" d="M20 132h220" />
+            <path class="house-roof" d="M42 78 130 20l88 58" />
+            <path class="house-body" d="M60 70v62h140V70" />
+            <path class="house-door" d="M116 132V94h28v38" />
+            <path class="house-window" d="M78 88h22v18H78zM160 88h22v18h-22z" />
+            <path class="house-detail" d="M130 20v-9M123 11h14" />
+          </svg>
+          <span class="hero-visual-caption">FORM, SPACE, VALUE</span>
+        </div>
+        <div class="hero-stat">
+          <strong>1,458</strong>
+          <span>TRAINING PROPERTIES</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace-grid">
+      <div class="panel prediction-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">PROPERTY PROFILE</p>
+            <h2>Generate a valuation</h2>
+          </div>
+          <span class="panel-index">A / 01</span>
+        </div>
+        <p class="panel-intro">Enter the core characteristics below. Unrequested fields are filled using training-set defaults.</p>
+        <form id="predictForm" class="prediction-form">
+          <label>Lot area <span class="input-unit">sq ft</span><input type="number" name="LotArea" min="500" placeholder="9,000" required></label>
+          <label>Year built<input type="number" name="YearBuilt" min="1870" placeholder="2005" required></label>
+          <label>Living area <span class="input-unit">sq ft</span><input type="number" name="GrLivArea" min="200" placeholder="1,500" required></label>
+          <label>First floor <span class="input-unit">sq ft</span><input type="number" name="1stFlrSF" min="200" placeholder="1,200" required></label>
+          <label>Overall quality <span class="input-unit">1 - 10</span><input type="number" name="OverallQual" min="1" max="10" placeholder="7" required></label>
+          <button class="primary-button" type="submit"><span>Generate prediction</span><span aria-hidden="true">-&gt;</span></button>
+        </form>
+      </div>
+
+      <aside class="panel result-panel" aria-live="polite">
+        <p class="eyebrow">PREDICTED MARKET VALUE</p>
+        <div id="resultEmpty" class="result-empty">
+          <span class="result-symbol">+</span>
+          <p>Your estimate will appear here.</p>
+        </div>
+        <div id="resultContent" class="result-content" hidden>
+          <div class="result-headline">
+            <span class="result-label">ESTIMATED SALE PRICE</span>
+            <strong id="predictedPrice" class="predicted-price">--</strong>
+          </div>
+          <div class="range-summary">
+            <div class="range-summary-heading">
+              <span>95% ESTIMATED RANGE</span>
+              <strong id="rangeText">--</strong>
+            </div>
+            <div class="price-range" aria-label="Estimated price range">
+              <span class="range-track"></span>
+              <span id="rangeMarker" class="range-marker"></span>
+            </div>
+            <div class="range-labels"><span id="priceLow">--</span><span id="priceHigh">--</span></div>
+          </div>
+          <table class="result-table">
+            <tbody>
+              <tr><th scope="row">Market segment</th><td id="tierValue">--</td></tr>
+              <tr><th scope="row">Segment median</th><td id="segmentMedian">--</td></tr>
+              <tr><th scope="row">Compared with segment median</th><td id="segmentDifference">--</td></tr>
+            </tbody>
+          </table>
+          <p id="resultNote" class="result-note"></p>
+          <details class="result-help">
+            <summary>How to read this estimate</summary>
+            <p><strong>Defaults:</strong> The form uses five key inputs. Other house details use typical training-data values: numeric fields use the median and categories use the most common value.</p>
+            <p><strong>Range:</strong> The line shows the model's 95% estimated range. The circle marks the predicted price; it is a guide, not a guarantee.</p>
+          </details>
+        </div>
+        <p id="resultError" class="message error" role="alert" hidden></p>
+      </aside>
+    </section>
+
+    <section class="batch-section">
+      <div>
+        <p class="eyebrow">BATCH ANALYSIS / 02</p>
+        <h2>Evaluate a dataset</h2>
+        <p>Upload a CSV using the exact training schema to score every property in one pass.</p>
+      </div>
+      <div class="batch-actions">
+        <div class="template-actions">
+          <button id="templateButton" class="secondary-button" type="button">Blank template</button>
+          <button id="exampleTemplateButton" class="secondary-button" type="button">Example template</button>
+        </div>
+        <form id="uploadForm" class="upload-form">
+          <label class="file-label" for="csvFile">Choose CSV<input id="csvFile" type="file" accept=".csv" required></label>
+          <button class="primary-button" type="submit">Run batch -&gt;</button>
+        </form>
+        <p class="batch-hint"><strong>Accepted dataset:</strong> Upload a CSV with at least one property row and the 79 Ames Housing input columns used by this model. The original 81-column training file is also accepted: <code>Id</code> identifies a row and <code>SalePrice</code> is the target, so both are ignored during prediction. Other missing or renamed columns are not supported. Use the example template to see the expected format.</p>
+        <p class="batch-method">Each row is cleaned, transformed with the training pipeline, and scored by the trained model. The output is an estimated sale price for each property; the model is not retrained.</p>
+        <p id="uploadResult" class="message" role="status"></p>
+      </div>
+      <div id="batchOutput" class="batch-output" hidden></div>
+    </section>
+  </main>
+  <footer><span>HOUSESCOPE / AMES HOUSING MODEL</span><span>Created by Yalda Ashrafi &copy; 2026</span></footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HouseScope | Market Segmentation</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">+</span> HOUSESCOPE</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="menu-navigation"><span></span><span></span><span></span></button>
+    <nav id="main-navigation" aria-label="Main navigation"><a href="index.html">Predict</a><a class="active" href="segmentation.html">Segments</a><a href="about.html">Guide</a><a href="contact.html">Contact</a></nav>
+    <nav id="menu-navigation" class="menu-navigation" aria-label="Menu navigation"><a href="index.html">Predict</a><a class="active" href="segmentation.html">Segments</a><a href="about.html">Guide</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <main>
+    <section class="content-page segmentation-hero">
+      <p class="eyebrow">UNSUPERVISED LEARNING / 02</p>
+      <h1>See the market<br><em>in distinct patterns.</em></h1>
+      <p> K-Means groups properties by living area, quality, age, bathrooms, and total square footage. The segments are ordered from entry-level to premium using their observed sale prices.</p>
+    </section>
+    <section class="segment-overview">
+      <div class="segment-metric"><span class="eyebrow">CLUSTERS</span><strong id="clusterCount">--</strong><small>market tiers</small><p>Properties are grouped into entry-level, mid-market, and premium patterns.</p></div>
+      <div class="segment-metric"><span class="eyebrow">SILHOUETTE SCORE</span><strong id="silhouetteScore">--</strong><small>cluster separation quality</small><p>A score closer to 1 means the groups are more clearly separated.</p></div>
+      <div class="segment-metric"><span class="eyebrow">FEATURES</span><strong id="featureCount">--</strong><small>behavioral dimensions</small><p>Grouping uses size, quality, age, bathrooms, and living area.</p></div>
+    </section>
+    <div class="quality-bar" aria-label="Silhouette score quality"><span id="qualityBar"></span></div>
+    <section class="chart-section">
+      <div class="section-heading"><div><p class="eyebrow">MARKET VALUE DISTRIBUTION</p><h2>Lot area vs. sale price</h2></div><p>Each point is a training property.</p></div>
+      <div id="scatterPlot" class="scatter-plot" role="img" aria-label="Scatter plot of property clusters"></div>
+      <div id="plotLegend" class="plot-legend"></div>
+    </section>
+    <section class="chart-section">
+      <div class="section-heading"><div><p class="eyebrow">AGGLOMERATIVE LEARNING</p><h2>Hierarchical market structure</h2></div><p>Ward-linkage grouping using the same five engineered features.</p></div>
+      <div id="agglomerativePlot" class="dendrogram-plot" role="img" aria-label="Agglomerative clustering dendrogram"></div>
+      <div class="plot-legend"><span><i style="background:#7fa58a"></i>Lower-distance branch</span><span><i style="background:#d99a5b"></i>Higher-distance merge</span></div>
+      <p class="chart-explanation"><strong>How to read it:</strong> Each branch represents properties being merged because they are similar across the five clustering features. The dashed line is the Ward-linkage cut used to separate the sample into three groups: entry-level, mid-market, and premium. This view helps explain how the market tiers emerge from the data rather than being assigned manually.</p>
+    </section>
+    <section>
+      <div class="section-heading"><div><p class="eyebrow">SEGMENT INSIGHTS</p><h2>What each tier represents</h2></div></div>
+      <div id="segmentCards" class="segment-cards"></div>
+    </section>
+    <section class="segment-assign">
+      <div><p class="eyebrow">PROPERTY CHECK / 03</p><h2>Assign a property to a tier</h2><p>Use the same core inputs as the valuation model.</p></div>
+      <form id="segmentForm" class="prediction-form">
+        <label>Lot area <span class="input-unit">sq ft</span><input type="number" name="LotArea" min="500" placeholder="9,000" required></label>
+        <label>Year built<input type="number" name="YearBuilt" min="1870" placeholder="2005" required></label>
+        <label>Living area <span class="input-unit">sq ft</span><input type="number" name="GrLivArea" min="200" placeholder="1,500" required></label>
+        <label>First floor <span class="input-unit">sq ft</span><input type="number" name="1stFlrSF" min="200" placeholder="1,200" required></label>
+        <label>Overall quality <span class="input-unit">1 - 10</span><input type="number" name="OverallQual" min="1" max="10" placeholder="7" required></label>
+        <button class="primary-button" type="submit">Assign market tier -&gt;</button>
+      </form>
+      <div id="segmentResult" class="segment-result" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+  <footer><span>HOUSESCOPE / AMES HOUSING MODEL</span><span>Created by Yalda Ashrafi &copy; 2026</span></footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>
