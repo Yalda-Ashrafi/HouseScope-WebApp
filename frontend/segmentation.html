@@ -25,15 +25,17 @@
     </section>
     <div class="quality-bar" aria-label="Silhouette score quality"><span id="qualityBar"></span></div>
     <section class="chart-section">
-      <div class="section-heading"><div><p class="eyebrow">MARKET VALUE DISTRIBUTION</p><h2>Lot area vs. sale price</h2></div><p>Each point is a training property.</p></div>
-      <div id="scatterPlot" class="scatter-plot" role="img" aria-label="Scatter plot of property clusters"></div>
-      <div id="plotLegend" class="plot-legend"></div>
+      <div class="section-heading"><div><p class="eyebrow">K-MEANS CLUSTERING</p><h2>Clusters in PCA space</h2></div><p>Each point is a training property.</p></div>
+      <div class="chart-image"><img src="assets/segment-kmeans.png" alt="K-Means clusters in PCA space"></div>
     </section>
     <section class="chart-section">
       <div class="section-heading"><div><p class="eyebrow">AGGLOMERATIVE LEARNING</p><h2>Hierarchical market structure</h2></div><p>Ward-linkage grouping using the same five engineered features.</p></div>
-      <div id="agglomerativePlot" class="dendrogram-plot" role="img" aria-label="Agglomerative clustering dendrogram"></div>
-      <div class="plot-legend"><span><i style="background:#7fa58a"></i>Lower-distance branch</span><span><i style="background:#d99a5b"></i>Higher-distance merge</span></div>
+      <div class="chart-image"><img src="assets/segment-dendrogram.png" alt="Agglomerative clustering dendrogram"></div>
       <p class="chart-explanation"><strong>How to read it:</strong> Each branch represents properties being merged because they are similar across the five clustering features. The dashed line is the Ward-linkage cut used to separate the sample into three groups: entry-level, mid-market, and premium. This view helps explain how the market tiers emerge from the data rather than being assigned manually.</p>
+    </section>
+    <section class="chart-section">
+      <div class="section-heading"><div><p class="eyebrow">DIMENSION REDUCTION</p><h2>Principal component coverage</h2></div><p>How many components are needed to represent the engineered features.</p></div>
+      <div class="chart-image"><img src="assets/segment-pca-variance.png" alt="PCA cumulative explained variance chart"></div>
     </section>
     <section>
       <div class="section-heading"><div><p class="eyebrow">SEGMENT INSIGHTS</p><h2>What each tier represents</h2></div></div>

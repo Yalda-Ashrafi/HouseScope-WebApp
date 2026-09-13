@@ -192,7 +192,7 @@ function formatCurrency(value) {
   return `$${Number(value).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
 }
 
-if (document.getElementById("scatterPlot")) {
+if (document.getElementById("segmentCards")) {
   loadSegmentation();
 }
 
@@ -204,39 +204,10 @@ async function loadSegmentation() {
     document.getElementById("silhouetteScore").textContent = Number(data.silhouette_score).toFixed(3);
     document.getElementById("qualityBar").style.width = `${Math.max(0, Math.min(100, data.silhouette_score * 100))}%`;
     document.getElementById("featureCount").textContent = data.features.length;
-    renderScatter(data.points, data.cluster_to_tier);
-    renderDendrogram(data.dendrogram);
     renderSegmentCards(data.segment_stats);
   } catch (error) {
-    document.getElementById("scatterPlot").textContent = `Unable to load segmentation: ${error.message}`;
+    document.getElementById("clusterCount").textContent = "Unavailable";
   }
-}
-
-function renderDendrogram(dendrogram) {
-  const target = document.getElementById("agglomerativePlot");
-  if (!target || !dendrogram?.lines?.length) return;
-  const paths = dendrogram.lines.map((points, index) => {
-    const color = index % 3 === 0 ? "#7fa58a" : index % 3 === 1 ? "#4e8790" : "#d99a5b";
-    return `<polyline points="${points}" fill="none" stroke="${color}" stroke-width="2" />`;
-  }).join("");
-  target.innerHTML = `<svg viewBox="0 0 ${dendrogram.width} ${dendrogram.height}" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="${dendrogram.cut_y}" x2="${dendrogram.width}" y2="${dendrogram.cut_y}" stroke="#d99a5b" stroke-width="2" stroke-dasharray="7 5" /><text x="12" y="16">MERGE DISTANCE</text><text x="12" y="${dendrogram.cut_y - 7}">CUT FOR ${dendrogram.cut_clusters} GROUPS</text>${paths}</svg>`;
-}
-
-function renderScatter(points, clusterToTier) {
-  const width = 900;
-  const height = 390;
-  const padding = 48;
-  const maxX = Math.max(...points.map((point) => Number(point.lot_area)));
-  const maxY = Math.max(...points.map((point) => Number(point.sale_price)));
-  const colors = { Low: "#7fa58a", Medium: "#4e8790", High: "#d99a5b" };
-  const circles = points.map((point) => {
-    const x = padding + (Number(point.lot_area) / maxX) * (width - padding * 2);
-    const y = height - padding - (Number(point.sale_price) / maxY) * (height - padding * 2);
-    const tier = clusterToTier[String(point.cluster)];
-    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.2" fill="${colors[tier] || "#8c6bb1"}" opacity=".65"><title>${tier}: ${formatCurrency(point.sale_price)}</title></circle>`;
-  }).join("");
-  document.getElementById("scatterPlot").innerHTML = `<svg viewBox="0 0 ${width} ${height}" aria-hidden="true"><line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" /><line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" />${circles}<text x="${width / 2}" y="${height - 10}">LOT AREA</text><text x="16" y="${height / 2}" transform="rotate(-90 16 ${height / 2})">SALE PRICE</text></svg>`;
-  document.getElementById("plotLegend").innerHTML = Object.entries(colors).map(([tier, color]) => `<span><i style="background:${color}"></i>${tier}</span>`).join("");
 }
 
 function renderSegmentCards(stats) {

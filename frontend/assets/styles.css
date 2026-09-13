@@ -232,6 +232,8 @@ footer { display: flex; justify-content: space-between; padding: 24px 0; }
 .dendrogram-plot text { fill: var(--muted); font-size: 11px; letter-spacing: .12em; }
 .scatter-plot line { stroke: #b8b4aa; stroke-width: 1; }
 .scatter-plot text { fill: var(--muted); font-size: 10px; letter-spacing: .12em; }
+.chart-image { overflow: hidden; border: 1px solid var(--border); background: #f5f1e9; }
+.chart-image img { display: block; width: 100%; height: auto; }
 .plot-legend { display: flex; gap: 18px; margin-top: 14px; color: var(--muted); font-size: 11px; }
 .plot-legend i { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; }
 .chart-explanation { margin: 18px 0 0; padding: 14px 16px; border-left: 3px solid var(--accent); background: rgba(255, 253, 248, .08); color: #f2e8d7; font-size: 12px; line-height: 1.6; }
@@ -309,6 +311,13 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
+@media (max-width: 720px) {
+  #main-navigation { display: none; }
+  .site-header { gap: 12px; }
+  .brand { font-size: 12px; }
+  .menu-toggle { margin-left: auto; }
 }
 
 @keyframes heroShift {
